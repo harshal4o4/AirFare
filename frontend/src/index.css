@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-base:        #020617;   /* slate-950 */
+    --bg-card:        #0f172a;   /* slate-900 */
+    --bg-card-hover:  #1e293b;   /* slate-800 */
+    --border:         rgba(51, 65, 85, 0.8);  /* slate-700/80 */
+    --border-bright:  #334155;   /* slate-700 */
+
+    --accent-blue:    #3b82f6;
+    --accent-indigo:  #6366f1;
+    --accent-cyan:    #06b6d4;
+    --accent-emerald: #10b981;
+    --accent-rose:    #f43f5e;
+    --accent-amber:   #f59e0b;
+    --accent-violet:  #a855f7;
+
+    --text-primary:   #ffffff;
+    --text-body:      #cbd5e1;   /* slate-300 */
+    --text-secondary: #94a3b8;   /* slate-400 */
+    --text-muted:     #475569;   /* slate-600 */
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg-base);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg-base); }
+  ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #334155; }
+}
+
+@layer components {
+
+  /* ── Cards ─────────────────────────────────────── */
+  .card {
+    background: rgba(15, 23, 42, 0.9);   /* slate-900/90 */
+    border: 1px solid rgba(51, 65, 85, 0.8);  /* slate-700/80 */
+    border-radius: 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card:hover {
+    border-color: #334155;
+    box-shadow: 0 0 0 1px rgba(59,130,246,0.06), 0 8px 32px rgba(0,0,0,0.4);
+  }
+
+  /* ── Glassmorphism navbar ───────────────────────── */
+  .glass {
+    background: rgba(2, 6, 23, 0.85);
+    backdrop-filter: blur(16px) saturate(1.4);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    border-bottom: 1px solid rgba(51, 65, 85, 0.6);
+  }
+
+  /* ── Badges ─────────────────────────────────────── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+  }
+  .badge-up      { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.25); }
+  .badge-down    { background: rgba(244,63,94,0.15);  color: #fb7185; border: 1px solid rgba(244,63,94,0.25); }
+  .badge-neutral { background: rgba(99,102,241,0.15); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.25); }
+
+  /* ── Selects ─────────────────────────────────────── */
+  .select-custom {
+    appearance: none;
+    background: #0f172a;
+    border: 1px solid rgba(51,65,85,0.8);
+    color: #cbd5e1;
+    border-radius: 10px;
+    padding: 8px 36px 8px 14px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+  }
+  .select-custom:hover { border-color: #475569; }
+  .select-custom:focus { border-color: var(--accent-blue); box-shadow: 0 0 0 3px rgba(59,130,246,0.15); }
+  .select-custom option { background: #0f172a; color: #cbd5e1; }
+
+  /* ── Skeleton shimmer ────────────────────────────── */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      rgba(15,23,42,0.9) 0%,
+      rgba(30,41,59,0.8) 50%,
+      rgba(15,23,42,0.9) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.8s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* ── Section label ───────────────────────────────── */
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+}

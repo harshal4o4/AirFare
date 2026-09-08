@@ -216,3 +216,28 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ── Project-specific ─────────────────────────────────────────────────────────
+
+# Large raw data files — not tracked in source control
+*.csv
+
+# Python virtual environment
+.venv/
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Node / Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.env.local
+
+# Vite cache
+**/.vite/
+
+# Editor
+.vscode/
+.idea/

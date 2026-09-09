@@ -8,7 +8,11 @@ async function get(path) {
 }
 
 export const fetchFilters      = ()                             => get('/filters')
-export const fetchTimeseries   = ()                             => get('/index/timeseries')
+export const fetchTimeseries   = (timeRange)                    => get(`/index/timeseries${timeRange ? `?range=${timeRange}` : ''}`)
 export const fetchRouteTrends  = (src, dst, cls)               => get(`/routes/trends?source=${src}&destination=${dst}${cls ? `&class=${cls}` : ''}`)
 export const fetchAirlines     = (src, dst, cls)               => get(`/airlines/comparison?source=${src}&destination=${dst}${cls ? `&class=${cls}` : ''}`)
 export const fetchLeadtime     = (src, dst, cls)               => get(`/index/leadtime?source=${src}&destination=${dst}${cls ? `&class=${cls}` : ''}`)
+export const fetchDistribution = (src, dst, cls)               => get(`/distribution?${src ? `source=${src}&` : ''}${dst ? `destination=${dst}&` : ''}${cls ? `class=${cls}` : ''}`)
+export const fetchQuality      = ()                             => get('/quality')
+export const fetchGeography    = ()                             => get('/geography')
+export const fetchRouteSummary = ()                             => get('/routes/summary')

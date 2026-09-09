@@ -118,11 +118,52 @@ class FlightRecord(Base):
     fare = Column(
         Integer,
         nullable=False,
-        comment="Ticket price in INR",
+        comment="Total ticket price in INR (legacy column — equals total_fare)",
+    )
+
+    # ------------------------------------------------------------------
+    # Fare decomposition (Phase 5 — MoSPI/NSO requirement)
+    # Populated by migrate_add_fare_decomposition.py
+    # ------------------------------------------------------------------
+    base_fare = Column(
+        Integer,
+        nullable=True,
+        comment="Pre-tax base fare in INR (fare excl. GST + surcharges)",
+    )
+    taxes_and_surcharges = Column(
+        Integer,
+        nullable=True,
+        comment="GST + UDF/ADF/PSF surcharges in INR (total_fare - base_fare)",
+    )
+    total_fare = Column(
+        Integer,
+        nullable=True,
+        index=True,
+        comment="Total ticket price in INR (same as fare; explicit for NSO reporting)",
+    )
+
+    # ------------------------------------------------------------------
+    # Provenance (Phase 6 — Scraper Engine)
+    # Set automatically by scraper_engine.py and ingest pipelines.
+    # ------------------------------------------------------------------
+    data_source_type = Column(
+        String(30),
+        nullable=True,
+        index=True,
+        default="Cleaned_CSV",
+        comment=(
+            "Provenance flag: 'Live_Scraped' | 'Synthetic_Backup' | "
+            "'Cleaned_CSV' | 'Normalized_Raw'"
+        ),
+    )
+    scraped_at = Column(
+        String(30),       # ISO-8601 UTC string — avoids TZ complexity in SQLite compat
+        nullable=True,
+        comment="UTC timestamp when this record was captured by the scraper",
     )
 
     def __repr__(self) -> str:
         return (
             f"<FlightRecord id={self.id} airline={self.airline!r} "
-            f"date={self.date_of_journey} fare={self.fare}>"
+            f"date={self.date_of_journey} fare={self.fare} src={self.data_source_type}>"
         )

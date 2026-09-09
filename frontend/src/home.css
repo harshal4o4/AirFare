@@ -1,0 +1,330 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   HOME PAGE — 3D Glass Single Page Dashboard (Light SaaS Theme)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Root ── */
+.hp-root {
+  min-height: 100vh;
+  background: #f4f4f6;
+  color: #111111;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  perspective: 1200px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   3D GLASS CONTAINER UTILITIES
+   ───────────────────────────────────────────────────────────────────────────── */
+.card,
+.hp-section-header-box,
+.hp-glass-card {
+  background: #ffffff;
+  border-radius: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.05),
+    0 4px 16px rgba(0, 0, 0, 0.02),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.card:hover,
+.hp-section-header-box:hover,
+.hp-glass-card:hover {
+  transform: translateY(-3px) translateZ(0);
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.08),
+    0 6px 20px rgba(0, 0, 0, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+/* Section Title Header Card Box */
+.hp-section-header-box {
+  padding: 24px 32px;
+  margin-bottom: 24px;
+  background: #ffffff;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   SCROLL ANIMATIONS
+   ───────────────────────────────────────────────────────────────────────────── */
+.hp-anim-in {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.hp-hero-content,
+.hp-section-container {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   NAVBAR (Centered 4 links in top middle)
+   ───────────────────────────────────────────────────────────────────────────── */
+.hp-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  z-index: 100;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+  background: rgba(244, 244, 246, 0.65);
+  backdrop-filter: blur(16px) saturate(1.5);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+}
+
+.hp-nav--scrolled {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  border-color: rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.hp-nav-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+
+.hp-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Clash Display', 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #111111;
+  text-transform: uppercase;
+  justify-self: start;
+}
+
+.hp-nav-brand svg {
+  color: #ff6a1a;
+}
+
+.hp-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 4px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.hp-nav-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: #66666e;
+  background: transparent;
+  border: none;
+  padding: 7px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.hp-nav-link:hover {
+  color: #111111;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   HERO SECTION (3D DEPT BANNER)
+   ───────────────────────────────────────────────────────────────────────────── */
+.hp-hero {
+  position: relative;
+  min-height: 82vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #0a0a0f;
+  color: #ffffff;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  box-shadow:
+    0 20px 60px -10px rgba(0, 0, 0, 0.25),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.hp-hero-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 72px 72px;
+  pointer-events: none;
+}
+
+.hp-hero-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 30%, rgba(255, 106, 26, 0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 80% 20%, rgba(99, 102, 241, 0.09) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.hp-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  padding: 100px 24px 60px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hp-hero-title {
+  font-family: 'Clash Display', 'Space Grotesk', sans-serif;
+  font-size: clamp(64px, 8vw, 110px);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+  line-height: 1;
+  margin: 0 0 16px;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.hp-hero-tagline {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 400;
+  color: #fed7aa;
+  margin: 0 0 20px;
+  line-height: 1.3;
+}
+
+.hp-hero-sub {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 4px;
+}
+
+.hp-scroll-indicator {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.hp-scroll-indicator:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateX(-50%) translateY(3px);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   SECTION WRAPPER & HEADERS
+   ───────────────────────────────────────────────────────────────────────────── */
+.hp-section {
+  padding: 72px 32px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.hp-section:last-of-type {
+  border-bottom: none;
+}
+
+.hp-section-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.hp-section-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ff6a1a;
+  margin: 0 0 6px;
+}
+
+.hp-section-title {
+  font-family: 'Clash Display', 'Space Grotesk', sans-serif;
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 800;
+  color: #111111;
+  margin: 0 0 6px;
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+}
+
+.hp-section-sub {
+  font-size: 14px;
+  color: #8a8a8f;
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   FOOTER
+   ───────────────────────────────────────────────────────────────────────────── */
+.hp-footer {
+  padding: 36px 24px;
+  text-align: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #8a8a8f;
+  letter-spacing: 0.05em;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   RESPONSIVE
+   ───────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hp-nav-inner {
+    grid-template-columns: auto 1fr;
+  }
+  .hp-nav-links {
+    justify-self: end;
+  }
+}
+
+@media (max-width: 640px) {
+  .hp-nav-inner { padding: 0 16px; }
+  .hp-nav-links { display: none; }
+  .hp-section { padding: 48px 16px; }
+  .hp-hero-content { padding-top: 80px; }
+}

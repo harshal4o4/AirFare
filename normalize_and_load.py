@@ -14,7 +14,6 @@ Usage:
 """
 
 import argparse
-import re
 import sys
 import time
 from pathlib import Path
@@ -24,7 +23,7 @@ from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
 
 from database import engine, Base
-import models  # noqa: F401 — registers FlightRecord with Base.metadata
+from models import FlightRecord  # noqa: F401 — registers FlightRecord with Base.metadata
 
 # ────────────────────────────────────────────────────────────────────────────
 # CLI
@@ -231,6 +230,7 @@ def dedup_against_db(df: pd.DataFrame) -> pd.DataFrame:
 
 def ensure_schema() -> None:
     print("🔧  Ensuring schema exists …")
+    _ = FlightRecord  # Ensures model is registered with Base.metadata
     Base.metadata.create_all(bind=engine)
     print("✅  Schema ready.")
 

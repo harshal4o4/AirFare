@@ -1,0 +1,379 @@
+/* ─── Login Page — Full-bleed BG + Glass Card Left + Hero Text Right ─── */
+
+/* ── Page Container ── */
+.login-page {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: #0a0a0f;
+}
+
+/* ── Full-bleed Background Image ── */
+.login-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ── Left gradient overlay for glass card readability ── */
+.login-overlay-left {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    105deg,
+    rgba(10, 10, 15, 0.38) 0%,
+    rgba(10, 10, 15, 0.20) 35%,
+    rgba(10, 10, 15, 0.04) 55%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* ── Bottom gradient for footer text ── */
+.login-overlay-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  z-index: 1;
+  background: linear-gradient(transparent, rgba(10, 10, 15, 0.28));
+  pointer-events: none;
+}
+
+/* ── Glass Login Card (Left Side) ── */
+.login-glass-card {
+  position: relative;
+  z-index: 3;
+  width: 420px;
+  margin-left: 6vw;
+  padding: 40px 36px 32px;
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  animation: glassIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes glassIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+.login-card-exit {
+  animation: glassOut 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes glassOut {
+  to {
+    opacity: 0;
+    transform: translateY(-16px) scale(1.02);
+    filter: blur(8px);
+  }
+}
+
+/* ── Card Title (27px semi-bold, primary white text) ── */
+.login-card-title {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 27px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin: 0 0 28px 0;
+  line-height: 1.2;
+}
+
+/* ── Form ── */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Field ── */
+.login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ── Label ── */
+.login-label {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  transition: color 0.2s;
+}
+.login-field-focus .login-label {
+  color: rgba(255, 255, 255, 0.9);
+}
+.login-field-error .login-label {
+  color: #ff5c5c;
+}
+
+/* ── Input ── */
+.login-input {
+  width: 100%;
+  padding: 13px 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  color: #fff;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  box-sizing: border-box;
+}
+.login-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 400;
+}
+.login-input:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
+}
+.login-field-error .login-input {
+  border-color: rgba(255, 92, 92, 0.5);
+  box-shadow: 0 0 0 3px rgba(255, 92, 92, 0.1);
+}
+
+/* ── Mobile (+91 prefix) ── */
+.login-mobile-wrap {
+  display: flex;
+  align-items: stretch;
+}
+.login-country-code {
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.login-input-mobile {
+  border-radius: 0 10px 10px 0;
+}
+.login-field-focus .login-country-code {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.8);
+}
+.login-field-error .login-country-code {
+  border-color: rgba(255, 92, 92, 0.5);
+}
+
+/* ── Error ── */
+.login-error {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #ff5c5c;
+  padding-left: 2px;
+}
+
+/* ── Submit Button ── */
+.login-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 220px;
+  margin: 8px auto 0;
+  padding: 13px 32px;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  border: none;
+  border-radius: 28px;
+  color: #fff;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.2s, opacity 0.2s;
+  box-shadow:
+    0 4px 18px rgba(59, 130, 246, 0.35),
+    0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.login-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 6px 24px rgba(59, 130, 246, 0.45),
+    0 2px 6px rgba(0, 0, 0, 0.2);
+}
+.login-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+.login-btn:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+/* ── Spinner ── */
+.login-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: loginSpin 0.7s linear infinite;
+}
+@keyframes loginSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Info Footer (inside card) ── */
+.login-info-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.login-info-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 400;
+}
+.login-info-row svg {
+  color: rgba(255, 255, 255, 0.35);
+  flex-shrink: 0;
+}
+
+/* ── RIGHT: Hero Typography & Branding ── */
+.login-hero-text {
+  position: absolute;
+  right: 6vw;
+  top: 30%;
+  transform: translateY(-50%);
+  z-index: 2;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  max-width: 680px;
+  animation: heroFade 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+@keyframes heroFade {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+.login-right-brand {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: 'Clash Display', 'Space Grotesk', 'Outfit', sans-serif;
+  font-size: clamp(54px, 6vw, 92px);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.login-right-tagline {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(20px, 2vw, 31px);
+  font-weight: 400;
+  color: #fed7aa;
+  margin: 0;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+}
+
+/* ── Bottom Bar ── */
+.login-bottom-bar {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.06em;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .login-page {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .login-glass-card {
+    margin-left: 0;
+    width: 90%;
+    max-width: 420px;
+  }
+  .login-hero-text {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    text-align: center;
+    margin-bottom: 32px;
+    order: -1;
+    animation: none;
+  }
+  .login-right-brand {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-glass-card {
+    padding: 28px 24px 24px;
+    border-radius: 16px;
+  }
+  .login-btn {
+    width: 100%;
+  }
+}

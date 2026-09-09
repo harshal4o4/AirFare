@@ -22,7 +22,7 @@ import pandas as pd
 from sqlalchemy.exc import SQLAlchemyError
 
 from database import engine, Base
-import models  # noqa: F401 — registers FlightRecord with Base.metadata
+from models import FlightRecord
 
 
 # ---------------------------------------------------------------------------
@@ -117,6 +117,7 @@ def load_and_clean(csv_path: Path) -> pd.DataFrame:
 def ensure_schema() -> None:
     """Create tables if they do not yet exist (idempotent)."""
     print("🔧  Ensuring database schema exists …")
+    _ = FlightRecord  # Ensures model is registered with Base.metadata
     Base.metadata.create_all(bind=engine)
     print("✅  Schema ready.")
 

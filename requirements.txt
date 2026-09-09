@@ -3,3 +3,6 @@ uvicorn[standard]
 sqlalchemy
 psycopg2-binary
 pandas
+playwright
+fake-useragent
+python-dateutil

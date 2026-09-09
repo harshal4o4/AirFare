@@ -1,0 +1,118 @@
+{
+  "project": "National Airfare Price Index",
+  "sih_problem_code": "SIH26056",
+  "generated_at": "2026-09-09T12:57:16.767071+00:00",
+  "database": {
+    "name": "airfare_db",
+    "total_records": 452088,
+    "date_range": {
+      "from": "2023-01-16",
+      "to": "2023-03-06"
+    },
+    "by_source_type": {
+      "Cleaned_CSV": 452088
+    },
+    "by_cabin_class": [
+      {
+        "class": "Economy",
+        "records": 252033,
+        "avg_fare_inr": 10207
+      },
+      {
+        "class": "Business",
+        "records": 126834,
+        "avg_fare_inr": 51670
+      },
+      {
+        "class": "Premium Economy",
+        "records": 73077,
+        "avg_fare_inr": 16299
+      },
+      {
+        "class": "First",
+        "records": 144,
+        "avg_fare_inr": 60731
+      }
+    ],
+    "top_routes": [
+      {
+        "route": "Delhi→Mumbai",
+        "records": 19113
+      },
+      {
+        "route": "Delhi→Bangalore",
+        "records": 17636
+      },
+      {
+        "route": "Bangalore→Delhi",
+        "records": 17576
+      },
+      {
+        "route": "Mumbai→Delhi",
+        "records": 16588
+      },
+      {
+        "route": "Bangalore→Mumbai",
+        "records": 16497
+      }
+    ]
+  },
+  "api": {
+    "version": "1.0.0-SIH26056",
+    "base_url": "http://localhost:8000",
+    "endpoints": [
+      "GET /api/v1/filters",
+      "GET /api/v1/index/timeseries",
+      "GET /api/v1/index/leadtime",
+      "GET /api/v1/index/apix         [DGCA weighted]",
+      "GET /api/v1/routes/trends",
+      "GET /api/v1/airlines/comparison",
+      "GET /api/v1/fares/decomposition [Phase 5]",
+      "GET /api/v1/flights/search",
+      "GET /api/v1/nso/export          [X-API-Key secured]"
+    ],
+    "nso_auth": "X-API-Key header required",
+    "nso_dev_key": "nso-dev-key-2024"
+  },
+  "scraper": {
+    "engine": "Playwright (Chromium headless)",
+    "target_ota": "MakeMyTrip",
+    "dgca_routes": 10,
+    "booking_windows": [
+      1,
+      7,
+      30
+    ],
+    "fallback": "Synthetic_Backup from Cleaned_dataset.csv",
+    "provenance_flags": [
+      "Live_Scraped",
+      "Synthetic_Backup",
+      "Cleaned_CSV",
+      "Normalized_Raw"
+    ]
+  },
+  "index_methodology": {
+    "standard_index": "Geometric-mean fare, baseline-100 on first journey date",
+    "apix": "DGCA traffic-weighted arithmetic mean, 9 bidirectional city-pairs",
+    "tax_regime": "India GST 5% Economy, 12% Business/First + ₹450 UDF/ADF/PSF",
+    "frequencies": [
+      "daily",
+      "weekly",
+      "monthly"
+    ],
+    "base_date": "2023-01-16"
+  },
+  "audit": {
+    "log_file": "audit.log",
+    "format": "JSON-Lines (machine-readable)",
+    "events": [
+      "service.startup",
+      "api.request",
+      "api.error",
+      "db.insert",
+      "scraper.route_run",
+      "scraper.session_end",
+      "nso.export"
+    ]
+  }
+}
